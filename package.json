@@ -4,7 +4,9 @@
   "description": "Developing a backend for a Gym Membership System, where users can register as members, retrieve their profile, and view a list of all registered members.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
