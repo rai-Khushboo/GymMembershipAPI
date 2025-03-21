@@ -10,15 +10,17 @@ connectDB();
 
 // Middlewares
 app.use(express.json());
-app.use(errHandler);
 
 // Root Route
 app.get("/", (req, res) => {
-    res.send("API is running... 🚀");
+    console.log("request received" , req.method, req.url);
+    res.send("Gym Membership API is running... 🚀");
 });
 
 // Setting up routers
 app.use("/api/members", memberRoutes);
+app.use(errHandler);
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
