@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 require("dotenv").config();
+const Member = require("../models/Member"); // Import Member model
 
 const connectDB = async () => {
     try {
@@ -9,9 +10,30 @@ const connectDB = async () => {
         }
 
         await mongoose.connect(uri);
-        console.log("Connected to database");
+        console.log("✅ Connected to database");
+
+        // Seed sample data if no members exist
+        const existingMembers = await Member.countDocuments();
+        if (existingMembers === 0) {
+            const sampleMembers = [
+                {
+                    name: "John Doe",
+                    email: "johndoe@example.com",
+                    phone: "9876543210",
+                    membershipType: "Premium",
+                },
+                {
+                    name: "Jane Smith",
+                    email: "janesmith@example.com",
+                    phone: "9876543211",
+                    membershipType: "Basic",
+                }
+            ];
+            await Member.insertMany(sampleMembers);
+            console.log("✅ Sample data inserted");
+        }
     } catch (err) {
-        console.error("Database Connection failed:", err.message);
+        console.error("❌ Database Connection failed:", err.message);
         process.exit(1);
     }
 };
