@@ -6,7 +6,6 @@ const { registerMember, getMemberProfile, getAllMembers } = require("../controll
 //register a member
 router.post("/", registerMember);
 
-
 //get user
 router.get("/:id", getMemberProfile);
 

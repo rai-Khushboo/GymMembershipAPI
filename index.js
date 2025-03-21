@@ -8,12 +8,17 @@ const memberRoutes = require("./routes/memberRoutes");
 const app = express();
 connectDB();
 
-//Middlewares
+// Middlewares
 app.use(express.json());
 app.use(errHandler);
 
-//setting up routers
-app.use('/api/members', memberRoutes);
+// Root Route
+app.get("/", (req, res) => {
+    res.send("API is running... 🚀");
+});
+
+// Setting up routers
+app.use("/api/members", memberRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
